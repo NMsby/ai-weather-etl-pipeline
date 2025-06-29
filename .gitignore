@@ -11,4 +11,4 @@ webserver_config.py
 airflow.cfg
 airflow.db
 
-credentials.txt
+dags/credentials.txt

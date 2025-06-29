@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.decorators import task
-from airflow.utils.dates import days_ago
+import pendulum
 from datetime import datetime, timedelta
 import requests
 
@@ -21,7 +21,7 @@ BASE_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
 
 def load_api_key():
-    with open('/usr/local/airflow/dags/credential.txt', 'r') as file:
+    with open('/usr/local/airflow/dags/credentials.txt', 'r') as file:
         return file.read().strip()
 
 
@@ -29,7 +29,7 @@ API_KEY = load_api_key()
 
 default_args = {
     'owner': 'airflow',
-    'start_date': days_ago(1),
+    'start_date': pendulum.now("UTC").subtract(days=1),
     'retries': 3,
     'retry_delay': timedelta(minutes=5)
 }
@@ -37,7 +37,7 @@ default_args = {
 with DAG(
         dag_id='weather_etl_pipeline',
         default_args=default_args,
-        schedule_interval='@daily',
+        schedule='@daily',
         catchup=False
 ) as dag:
     @task()

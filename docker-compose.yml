@@ -11,6 +11,6 @@ services:
       - "5432:5432"
     volumes:
       - ./dags:/usr/local/airflow/dags
-      - ./dags/credential.txt:/usr/local/airflow/dags/credential.txt
+      - ./dags/credentials.txt:/usr/local/airflow/dags/credentials.txt
 volumes:
   postgres_data:

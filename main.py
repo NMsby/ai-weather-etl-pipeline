@@ -20,7 +20,7 @@ base_url = "https://api.openweathermap.org/data/2.5/weather?q="
 
 # Read api from an external file
 
-with open("credentials.txt", "r") as f:
+with open("dags/credentials.txt", "r") as f:
     api_key = f.read().strip()  # remove any extra whitespace
 
 
