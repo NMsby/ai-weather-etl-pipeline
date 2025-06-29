@@ -12,3 +12,4 @@ airflow.cfg
 airflow.db
 
 dags/credentials.txt
+credentials.txt
